@@ -1,0 +1,303 @@
+@font-face {
+    font-family: 'ConBlack';
+    src: url('../fonts/ConBlack.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'FONTSPRING DEMO - Freigeist Con Black';
+    src: url('../fonts/Fontspring-DEMO-freigeist-conblack.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'TexatBold';
+    src: url('../fonts/TEXAT-BOLD-PERSONAL-USE.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Uncut Sans';
+    src: url('../fonts/Uncut-Sans-VF.ttf') format('truetype');
+}
+body {
+  background-color: #222222;
+}
+
+.vote_page {
+  padding: 3vw 5.8vw 6vw 5.8vw;
+}
+
+.tab.active {
+  color: #91b6ff;
+  border-bottom: 0.5vw solid #91b6ff;
+}
+
+.switch_option {
+  color: #737373;
+  font-size: 4.5vw;
+  font-family: "FONTSPRING DEMO - Freigeist Con Black", sans-serif;
+  letter-spacing: -0.2vw;
+  font-style: normal;
+  font-weight: 770;
+}
+
+.tab {
+  cursor: pointer;
+}
+
+.alcher_hunks {
+  margin-left: 3vw;
+}
+
+.vote_text {
+  color: #f1f1f1;
+  font-family: "Uncut Sans", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.7vw;
+  /* letter-spacing: -0.1vw;   */
+  padding-top: 2vw;
+}
+
+.divas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
+  gap: 1.6vw;
+}
+
+.hunks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
+  gap: 1.6vw;
+}
+
+.img_container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* align-items: center; */
+  /* transition: background-color 0.3s ease; */
+}
+
+.participants > div {
+  display: none;
+}
+
+.participants > div.active {
+  display: grid;
+  /* flex-wrap: wrap; */
+  justify-content: space-around;
+}
+
+.text_vote {
+  display: none;
+}
+
+.text_vote.active {
+  display: block;
+}
+
+.img_of_participant {
+  width: 20vw;
+  height: 25vw;
+  object-fit: cover;
+  /* transition: background-color 0.3s ease; */
+}
+
+.voting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* position: relative; */
+  position: absolute;
+  text-align: center;
+  /* top: 55%; */
+  width: 20vw;
+  bottom: 2vw;
+  /* align-content: center; */
+  /* align-items: center; */
+  /* transition: background-color 0.3s ease; */
+}
+
+/* .voting:hover + .img_container{
+    background-color: rgba(0, 0, 0, 0.3);
+}  */
+
+.vote_button {
+  width: 8vw;
+  height: auto;
+  cursor: pointer;
+  background-color: #91b6ff;
+  padding: 0.3vw 2.5vw 0.3vw 2.5vw;
+  border: 0.2vw solid black;
+  border-radius: 30px;
+}
+
+.name_of_participant {
+  font-size: 1.5vw;
+  font-family: "FONTSPRING DEMO - Freigeist Con Black", sans-serif;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.vote {
+  font-size: 1.8vw;
+  font-weight: 850;
+  font-family: "FONTSPRING DEMO - Freigeist Con Black", sans-serif;
+}
+
+.img_of_heart {
+  width: 1.7vw;
+  height: auto;
+  padding-left: 0.5vw;
+}
+
+.img_container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0.3vw;
+  width: 97%;
+  height: 100%; /* Adjust this value to change the height of the black shade */
+  /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 50%); Linear gradient from transparent to black with 50% opacity */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.img_container:hover::before {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.759),
+    rgba(8, 8, 8, 0)
+  );
+  /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.825) 20%, rgba(0, 0, 0, 0.810) 0%); Linear gradient with varying opacity */
+}
+
+.participant-name {
+  position: absolute;
+  color: white;
+  font-weight: bold;
+  font-size: 1.6vw;
+  width: 20vw;
+  top: 0vw;
+  display: none;
+  transition: opacity 0.3s ease;
+  font-family: "FONTSPRING DEMO - Freigeist Con Black", sans-serif;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.img_container:hover .participant-name {
+  /* opacity: 1;  */
+  display: inline;
+}
+
+.img_container:hover .name_of_participant {
+  opacity: 0;
+}
+
+@media screen and (max-width: 375px) {
+  .vote {
+    font-size: 3vw;
+  }
+
+  .img_of_heart {
+    width: 2.3vw;
+  }
+
+  /* .vote_button{
+        margin-top: -1vh;
+    } */
+
+  .name_of_participant {
+    margin-top: -0.3vh;
+  }
+}
+
+@media (max-width: 750px) {
+  .participants > div.active {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3vh;
+  }
+  .vote_text {
+    font-size: 3.7vw;
+  }
+  .img_of_participant {
+    width: 61vw;
+    height: 75vw;
+  }
+  .vote {
+    font-size: 3.5vw;
+  }
+  .name_of_participant {
+    font-size: 4vw;
+  }
+  .img_of_heart {
+    width: 3vw;
+    height: auto;
+  }
+  .voting {
+    bottom: 3vw;
+    width: 60vw;
+  }
+  .vote_button {
+    width: 15vw;
+  }
+  .img_container::before {
+    width: 69%;
+    left: 13.7vw;
+  }
+  .participant-name {
+    font-size: 4vw;
+    width: 50vw;
+  }
+}
+@media ((min-width: 751px) and (max-width: 1200px)) {
+  .participants > div.active {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 3vh;
+  }
+  .vote_text {
+    font-size: 3.7vw;
+  }
+  .img_of_participant {
+    width: 42vw;
+    height: 58vw;
+  }
+  .name_of_participant,
+  .vote {
+    font-size: 3.5vw;
+  }
+  .img_of_heart {
+    width: 3vw;
+    height: auto;
+  }
+  .voting {
+    bottom: 3vw;
+    width: 42vw;
+  }
+  .vote_button {
+    width: 15vw;
+  }
+
+  .participant-name {
+    font-size: 3.5vw;
+    width: 40vw;
+  }
+
+  .img_container::before {
+    width: 100%;
+    left: 0;
+  }
+}
+
+@media screen and (max-width: 391px) {
+  .vote_button {
+    font-size: 3.4vw;
+  }
+}

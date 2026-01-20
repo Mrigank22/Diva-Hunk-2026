@@ -1,0 +1,565 @@
+@font-face {
+  font-family: "ConBlack";
+  src: url("../fonts/ConBlack.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "FONTSPRING DEMO - Freigeist Con Black";
+  src: url("../fonts/Fontspring-DEMO-freigeist-conblack.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "TexatBold";
+  src: url("../fonts/TEXAT-BOLD-PERSONAL-USE.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Uncut Sans";
+  src: url("../fonts/Uncut-Sans-VF.ttf") format("truetype");
+}
+html,
+body {
+  margin: 0px;
+  overflow-x: hidden;
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.succme {
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.succme.fade-out {
+  opacity: 0;
+}
+
+/* .votemessage,
+.dhme {
+    opacity: 0;
+    transition: opacity 1s;
+} */
+
+/* .succme.fade-out .votemessage,
+.succme.fade-out .dhme {
+    opacity: 1;
+} */
+
+.header {
+  background-image: url("../images/Group 1.png");
+  background-color: white;
+  height: 100vh;
+  width: 100vw;
+  background-size: 118vw 136vh;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  background-position: -18vw -38vh;
+  display: flex;
+  flex-direction: row;
+}
+.header-text {
+  width: 55vw;
+  margin-left: 5.5vw;
+}
+
+.header-image {
+  height: 100vh;
+  width: 45vw;
+  margin-left: 10vw;
+  object-fit: cover;
+}
+.alcher-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.success-message {
+  justify-content: center;
+  align-items: center;
+  gap: 1vw;
+  background-color: #91b6ff;
+  color: #1e1e1e;
+  font-family: "FONTSPRING DEMO - Freigeist Con Black", sans-serif;
+  height: 4vh;
+  width: 40vw;
+  font-size: 3vh;
+  font-weight: 850;
+}
+
+.succme {
+  position: absolute;
+  width: 37vw;
+  background-color: #222222;
+  border: 1px solid #1890ff;
+  color: white;
+  padding: 10px;
+  padding-left: 13px;
+  border-radius: 5px;
+  /* margin: 20px 0; */
+  /* text-align: center; */
+  margin-left: 28vw;
+  top: 11vh;
+  font-size: 1.5vw;
+  /* transform: translate(-50%, -50%); */
+  /* display: none; */
+}
+
+.dhme {
+  position: relative;
+  left: 76%;
+  font-weight: 600;
+}
+
+.cname {
+  font-weight: 600;
+}
+
+.succme {
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.succme.fade-out {
+  opacity: 0;
+}
+
+.sections {
+  padding-top: 2vw;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.sections h1 {
+  font-weight: 800;
+  font-family: "FONTSPRING DEMO - Freigeist Con Black", sans-serif;
+}
+.heading {
+  padding-top: 2vw;
+  width: 100%;
+  margin-left: 5%;
+  font-size: calc(35px + 4vw);
+  font-weight: 1000;
+  margin-bottom: 5px;
+  letter-spacing: -0.2vw;
+  font-style: normal;
+  font-weight: 800;
+  font-family: "FONTSPRING DEMO - Freigeist Con Black", sans-serif;
+}
+.description {
+  width: 80%;
+  margin-left: 5%;
+  font-weight: bold;
+  margin-bottom: 2vw;
+  font-size: 20px;
+  font-family: "Uncut Sans", sans-serif;
+}
+.description-2 {
+  width: 90%;
+  margin-left: 5%;
+  font-weight: bolder;
+  font-size: 20px;
+  font-family: "Uncut Sans", sans-serif;
+}
+.image-vote-here {
+  margin-left: 5%;
+  width: 250px;
+  margin-top: 5vw;
+}
+
+.footer {
+  background-image: url("../images/footer-background.png");
+  height: 50vw;
+  background-size: cover;
+  background-color: #222222;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #f1f1f1;
+  width: 100%;
+  height: auto;
+}
+
+.footer-iit {
+  margin-top: 11%;
+  font-size: 1.8vw;
+  font-family: "Uncut Sans", sans-serif;
+}
+
+.footer-alcher {
+  font-size: 4.2vw;
+  font-family: "FONTSPRING DEMO - Freigeist Con Black", sans-serif;
+  font-weight: 1000;
+  width: 80%;
+  text-align: center;
+  margin-bottom: 1.5%;
+}
+.following {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 70%;
+  font-family: "Uncut Sans", sans-serif;
+}
+
+.footer-divahunk {
+  font-size: 7.5vw;
+  font-weight: 800;
+
+  font-family: "Uncut Sans", sans-serif;
+  margin-bottom: 2%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  letter-spacing: 1.5vw;
+}
+.italic-footer {
+  font-style: italic;
+  font-size: 7.5vw;
+  font-weight: 1000;
+  margin-right: 1.5vw;
+  font-family: "Uncut Sans", sans-serif;
+}
+.contact {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin: auto;
+  margin-bottom: 1.5%;
+}
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  margin-right: 2vw;
+}
+
+.name {
+  font-weight: 600;
+  margin-bottom: 10%;
+  font-size: 1.121vw;
+  font-family: "Uncut Sans", sans-serif;
+}
+
+.phone {
+  font-size: 1.12vw;
+  font-family: "Uncut Sans", sans-serif;
+}
+
+.email {
+  font-size: 1.12vw;
+  font-family: "Uncut Sans", sans-serif;
+}
+.creator-info {
+  width: 100%;
+  margin-left: 10%;
+  display: flex;
+  flex-direction: row;
+  font-size: 1.12vw;
+  font-family: "Uncut Sans", sans-serif;
+  margin-bottom: 2%;
+  align-items: flex-end;
+}
+.business-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: 38vw;
+}
+
+.webteam {
+  display: none;
+  z-index: 3;
+  margin-top: -20px;
+  margin-bottom: 10px;
+  position: absolute;
+  background-color: #48546c;
+  width: 14vw;
+  border-radius: 1vw;
+  font-size: 1.12vw;
+  align-items: center;
+  /* display:flex; */
+
+  flex-direction: column;
+  margin-left: 22.5vw;
+  margin-bottom: 3vh;
+  opacity: 0.9;
+  height: 15vh;
+  justify-content: top;
+  margin-top: -50vw;
+}
+.webteam p {
+  margin-bottom: -0.5vw;
+}
+
+@media (max-width: 650px) {
+  .header {
+    display: none;
+  }
+  .footer {
+    display: none;
+  }
+}
+@media (min-width: 650px) {
+  .header-mobile {
+    display: none;
+    font-family: "FONTSPRING DEMO - Freigeist Con Black", sans-serif;
+  }
+}
+
+.heading-mobile {
+  color: white;
+  font-weight: 1000;
+  font-size: 50px;
+  margin-left: 10%;
+  padding-top: 20vh;
+  margin-bottom: 1vh;
+}
+@media (max-width: 750px) {
+  .description,
+  .description-2 {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 650px) {
+  .description {
+    color: white;
+    margin-left: 10%;
+    font-size: 15px;
+    margin-top: 30px;
+  }
+  .description-2 {
+    color: white;
+    margin-left: 10%;
+    font-size: 15px;
+  }
+  .footer-iit {
+    margin-top: 17%;
+    font-weight: 600;
+    font-size: 2.2vw;
+  }
+  .footer-alcher {
+    font-size: 5vw;
+  }
+  .name {
+    font-size: 2vw;
+    margin-bottom: 1.5vh;
+  }
+  .phone {
+    font-size: 2vw;
+  }
+  .email {
+    font-size: 2vw;
+  }
+  .footer-divahunk {
+    font-weight: 800;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 10vw;
+  }
+
+  .succme {
+    /* width: 50vw; */
+    font-size: 3vw;
+    margin-left: 31vw;
+    top: 14vh;
+    padding: 0vw 4vw 0vw 4vw;
+  }
+  .dhme {
+    margin-left: -6vw;
+  }
+}
+@media (max-width: 650px) {
+  .contact-info .name,
+  .phone,
+  .email {
+    font-size: 3vw;
+  }
+}
+.image-vote-mobile {
+  margin-left: 10%;
+  margin-top: 5vh;
+}
+
+.mobile-footer {
+  background-image: url("../images/footer-background.png");
+  width: 100%;
+  height: 100vh;
+  font-family: "Uncut Sans", sans-serif;
+  background-repeat: no-repeat;
+  background-size: 100vw 50vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+}
+/* .footer-divahunk{
+    font-weight: 800;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 10vw;
+} */
+.people-contact {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-footer {
+  margin-top: 3vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  width: 100%;
+  margin-left: 10%;
+}
+.following-footer {
+  margin-right: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 25vh;
+  width: 65%;
+}
+@media (min-width: 650px) {
+  .mobile-footer {
+    display: none;
+  }
+}
+
+.alcher-logo-mobile {
+  width: 40px;
+  height: 40px;
+}
+
+.header-mobile {
+  background-image: url("../images/diva.png");
+  background-position: center top;
+  font-family: "FONTSPRING DEMO - Freigeist Con Black", sans-serif;
+  height: 100vh;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  background-size: cover;
+  animation: imageSwitch 4s infinite; /* Switch every 2 seconds (2s for each image, infinite loop) */
+  transition: background-image 2s ease; /* Optional: add a smooth transition effect */
+}
+
+@keyframes imageSwitch {
+  0%,
+  100% {
+    background-image: url("../images/diva.png");
+  }
+  50% {
+    background-image: url("../images/hunk.png");
+  }
+}
+
+.alcher-heading {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin: auto;
+  padding-top: 3vh;
+  margin-left: 10%;
+}
+.vote-button {
+  border: 2px solid black;
+  margin-left: 5%;
+  width: 250px;
+  margin-top: 5vw;
+  height: 45px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: 1000;
+  font-size: 30px;
+  justify-content: space-evenly;
+  border-radius: 15px;
+  background-color: #91b6ff;
+  cursor: pointer;
+  font-family: "FONTSPRING DEMO - Freigeist Con Black", sans-serif;
+}
+.vote-button-mobile {
+  border: 2px solid black;
+  margin-left: 10%;
+  width: min(80%, 250px);
+  margin-top: 2vh;
+  height: 55px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: 1000;
+  font-size: 25px;
+  justify-content: space-around;
+  border-radius: 30px;
+  background-color: #91b6ff;
+  cursor: pointer;
+  font-family: "FONTSPRING DEMO - Freigeist Con Black", sans-serif;
+}
+.vote-button-mobile img {
+  transform: rotate(270deg);
+}
+
+/* @media (max-width:1260px){
+    .succme{
+        font-size: 1.8vw;
+        left: 31vw;
+    }
+} */
+.webteam {
+  display: none;
+  z-index: 3;
+  margin-top: -20px;
+  margin-bottom: 10px;
+  position: absolute;
+  background-color: #48546c;
+  width: 14vw;
+  border-radius: 1vw;
+  font-size: 1.12vw;
+  align-items: center;
+  /* display:flex; */
+
+  flex-direction: column;
+  margin-left: 22.5vw;
+  margin-bottom: 3vh;
+  opacity: 0.9;
+  height: 15vh;
+  justify-content: top;
+  margin-top: -50vw;
+}
+.webteam p {
+  margin-bottom: -0.5vw;
+}
+
+@media (max-width: 1226px) {
+  .description,
+  .description-2 {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 578px) {
+  .vote-button-mobile {
+    margin-top: 12vh;
+  }
+  .heading-mobile {
+    padding-top: 0;
+  }
+}

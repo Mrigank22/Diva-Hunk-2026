@@ -1,0 +1,477 @@
+@font-face {
+    font-family: 'ConBlack';
+    src: url('../fonts/ConBlack.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'FONTSPRING DEMO - Freigeist Con Black';
+    src: url('../fonts/Fontspring-DEMO-freigeist-conblack.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'TexatBold';
+    src: url('../fonts/TEXAT-BOLD-PERSONAL-USE.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Uncut Sans';
+    src: url('../fonts/Uncut-Sans-VF.ttf') format('truetype');
+}
+
+body {
+  background-color: #222222;
+}
+
+.container {
+  position: relative;
+}
+
+.headerShape {
+  z-index: -1;
+  position: absolute;
+  width: 35%;
+  height: auto;
+  margin-left: -3vw;
+  margin-top: -7vw;
+}
+.register {
+  /* height:fit-content; */
+  position: relative;
+  padding: 0.6vw 3vw 8vw 3vw;
+  top: -0;
+  left: 0%;
+  /* z-index: 1; */
+}
+.header1 {
+  display: flex;
+  align-items: center;
+  /* justify-content: flex-start; */
+  font-family: "ConBlack";
+  gap: 2vw;
+  font-size: 2.2vw;
+  font-weight: 800;
+  font-family: "FONTSPRING DEMO - Freigeist Con Black", sans-serif;
+  line-height: 3.5vw;
+  color: #f1f1f1;
+  padding-top: 3%;
+  padding-bottom: 4.4%;
+}
+.header1 img {
+  width: 3vw;
+  height: auto;
+}
+.registerPage {
+  display: flex;
+  position: relative;
+  margin-left: 3vw;
+  gap: 35vw;
+}
+.wrongOTP {
+    font-family: 'Uncut Sans', sans-serif;
+    height:4vh;
+    color:red;
+    font-size: 1.5vh;
+    font-weight:850;
+    margin-bottom: -2vw;
+}
+
+.registerImages {
+  position: relative;
+}
+
+.registerImages .imageContainer {
+  position: relative;
+}
+
+.registerImages img {
+  position: absolute;
+  opacity: 1;
+  transition: opacity 2s ease-in-out;
+  width: 33vw;
+  height: 44vw;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 33vw;
+  height: 100%;
+  background-color: #222222;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  pointer-events: none;
+}
+
+.fade-in-out {
+  position: relative;
+  width: 33vw;
+  height: auto;
+}
+
+.image1 {
+  z-index: 2;
+}
+.imageStar {
+  position: absolute;
+  z-index: 3;
+  margin-top: 2vw;
+  left: 5vw;
+  width: 22vw;
+  height: auto;
+  opacity: 0;
+  animation: fadeInAndOut 1s linear forwards;
+}
+@keyframes fadeInAndOut {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.image2 {
+  z-index: 1;
+}
+.image3 {
+  z-index: 0;
+}
+
+.fade-in-out.visible {
+  opacity: 1;
+}
+
+.overlay.visible {
+  opacity: 1; /* Make the overlay visible during the transition */
+}
+
+.registerMain {
+  margin-top: -2vw;
+  /* margin-left: ; */
+  color: #f1f1f1;
+  height: 100%;
+}
+.formHead {
+  display: flex;
+  gap: 18vw;
+  align-items: center;
+}
+.heading2 {
+  width: 20vw;
+  font-size: 2.08vw;
+  font-weight: 800;
+  font-family: "FONTSPRING DEMO - Freigeist Con Black", sans-serif;
+  text-transform: uppercase;
+}
+.shareProfile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1vw;
+  background-color: #91b6ff;
+  color: #1e1e1e;
+  font-family: "FONTSPRING DEMO - Freigeist Con Black", sans-serif;
+  /* height:4vh;  */
+  /* width:15vw; */
+  font-size: 1.2vw;
+  font-weight: 850;
+  padding: 0.3vw 1vw 0.3vw 1vw;
+  border-radius: 5px;
+}
+.shareProfile img {
+  height: 1vw;
+}
+.participant {
+  margin-top: -2vw;
+  font-size: 4.8vw;
+  font-weight: 700;
+  font-family: "FONTSPRING DEMO - Freigeist Con Black", sans-serif;
+}
+.formNote {
+  margin-top: -3vw;
+  font-size: 1.04vw;
+  width: 45vw;
+  font-family: "Uncut Sans", sans-serif;
+}
+form {
+  font-family: "Uncut Sans", sans-serif;
+}
+.input input[type="text"],
+input[type="number"],
+input[type="email"] {
+  width: 100%;
+  margin-top: 1.9vw;
+  padding-bottom: 0.5vw;
+  display: inline-block;
+  border: none;
+  color: #f1f1f1;
+  background-color: #222222;
+  outline: none;
+  font-size: 1.2vw;
+  font-weight: 600;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  /* margin: 0; Optional */
+}
+
+.enterName,
+.emailID {
+  border-bottom: 0.8px solid;
+  width: 50%;
+  color: #f1f1f1;
+  font-weight: 400;
+}
+
+.phone1 {
+  display: flex;
+  border-bottom: 0.8px solid #f1f1f1;
+  width: 50%;
+  font-weight: 400;
+}
+
+.option {
+  /* font-size: 1.2vw; */
+  /* font-weight: 600; */
+  margin-top: 1.9vw;
+  display: inline;
+  border: none;
+  font-family: "Uncut Sans", sans-serif;
+}
+
+#dropdown {
+  background-color: #222222;
+  border: none;
+  font-size: 1.2vw;
+  font-weight: 600;
+}
+button {
+  border: none;
+  border-radius: 10%;
+  cursor: pointer;
+}
+
+select {
+  background-color: #222222;
+  color: #737373;
+  outline: none;
+  border: none;
+}
+.OTPSend {
+  background-color: #91b6ff;
+  color: #1e1e1e;
+  font-family: "FONTSPRING DEMO - Freigeist Con Black", sans-serif;
+  /* height:4vh; width:7vw; */
+  font-size: 1.2vw;
+  padding: 0.3vw 1.2vw 0.3vw 1.2vw;
+  font-weight: 850;
+  border-radius: 6px;
+  margin-bottom: 1.2vw;
+  margin-top: 0.9vw;
+}
+.OTPHead {
+  font-size: 1.3vw;
+  font-weight: 600;
+}
+.OTPCollect {
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 2vw;
+}
+.inputs {
+  display: flex;
+  gap: 0.8vw;
+}
+
+.OTP {
+  width: 2.5vw;
+  background-color: #222222;
+  border: none;
+  border-bottom: 1px solid #737373;
+  text-align: center;
+  color: #f1f1f1;
+}
+
+.OTP:focus {
+  outline: none;
+}
+
+.submit {
+  background-color: #91b6ff;
+  color: #1e1e1e;
+  font-family: "FONTSPRING DEMO - Freigeist Con Black", sans-serif;
+  /* height:4vh; width:12vw; */
+  font-size: 1.3vw;
+  font-weight: 850;
+  border-radius: 6px;
+  padding: 0.3vw 1.2vw 0.3vw 1.2vw;
+}
+
+/* @media(max-width: 768px){
+
+     .registerPage{
+        left:-4vw;
+        gap:52.5%;
+    } 
+    .shareProfile{
+        gap:1vw;
+        height:3vh;
+        font-size: 1vh;
+    }
+
+
+    .submit, .OTPSend{
+        font-size: 1.5vh;
+    }
+} */
+
+@media (max-width: 650px) {
+  body {
+    background-color: #222222;
+  }
+  .headerShape {
+    width: 40vw;
+    height: auto;
+  }
+  .register {
+    padding-bottom: 10vw;
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
+  .registerPage {
+    flex-direction: column;
+    margin-left: 0;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    gap: 0;
+    /* padding-bottom: 0; */
+    /* left:6vw; */
+  }
+  .fade-in-out {
+    /* margin-left: 18vw; */
+    width: 60vw;
+    height: auto;
+    /* margin-top: 2vw; */
+  }
+  .imageStar {
+    left: 20vw;
+    margin-top: 4.5vw;
+    width: 45vw;
+    height: auto;
+  }
+  .registerMain {
+    margin-top: 89vw;
+    position: relative;
+    /* left:2vw; */
+    /* gap: 0; */
+  }
+  .shareProfile {
+    /* height:4vh; */
+    /* font-size: 0.7vh; */
+    font-size: 2.5vw;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+  }
+  .formNote {
+    font-size: 3.1vw;
+    width: 87vw;
+  }
+  .enterName,
+  .phone1,
+  .emailID {
+    width: 100%;
+  }
+  .heading2 {
+    width: 42vw;
+  }
+
+  #dropdown {
+    font-size: 3vw;
+  }
+
+  .option {
+    margin-top: 4vw;
+  }
+
+  .overlay {
+    margin-left: 14vw;
+    width: 43vw;
+  }
+
+  .registerImages img {
+    width: 68vw;
+    margin-left: 11vw;
+    margin-top: 2vw;
+    height: 89vw;
+  }
+
+  .heading2 {
+    font-size: 5vw;
+  }
+  .participant {
+    font-size: 8vw;
+    margin-bottom: 4vw;
+  }
+  .formHead {
+    gap: 15vw;
+  }
+  .input input[type="text"],
+  input[type="number"],
+  input[type="email"] {
+    font-size: 3.7vw;
+    margin-top: 4.9vw;
+  }
+  .subt {
+    /* align-items: center; */
+    text-align: center;
+  }
+  .OTPSend {
+    margin-top: 4vw;
+    font-size: 3.3vw;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    /* height: 3vh; */
+    /* width:12vw; */
+    /* margin-bottom: 0vh; */
+  }
+  .OTPHead {
+    font-size: 3.7vw;
+  }
+
+  .OTP {
+    width: 4vw;
+  }
+  .submit {
+    font-size: 3.3vw;
+    margin-top: 5vw;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+  }
+  .header1 {
+    font-size: 5vw;
+    align-items: center;
+  }
+  .shareProfile img {
+    width: 2vw;
+    height: auto;
+  }
+  .header1 img {
+    width: 8vw;
+    height: auto;
+  }
+}
