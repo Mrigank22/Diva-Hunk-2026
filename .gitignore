@@ -2,3 +2,15 @@
 */__pycache__/*
 image_uploads
 /venv
+
+# 1. Ignore Tailwind/Node dependencies (VERY IMPORTANT)
+node_modules/
+**/node_modules/
+theme/static_src/node_modules/
+
+# 2. Ignore Database (Don't share your local data)
+db.sqlite3
+*.sqlite3
+
+# 5. Ignore collected static files (Generated automatically)
+staticfiles/

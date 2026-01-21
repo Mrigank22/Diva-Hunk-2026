@@ -24,8 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*o10hzp0w*ovh)@k3#6zdxhsg5ll57vo#gi@&#*x%rdk6u83&!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-PROD=os.environ.get('PROD',False)
-DEBUG = os.environ.get('DEBUG',False)
+# PROD=os.environ.get('PROD',False)
+# DEBUG = os.environ.get('DEBUG',True)
+
+DEBUG = os.environ.get("DEBUG", "True") == "True"
+PROD = os.environ.get('PROD') == "True"
 
 ALLOWED_HOSTS = ["*"]
 
@@ -40,7 +43,25 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'minio_storage',
+
+    'tailwind',
+    'django_browser_reload',
+
+    'theme',        
     'base'
+]
+
+TAILWIND_APP_NAME = 'theme'
+
+if os.name == 'nt':  # Checks if the OS is Windows
+    # Your specific path for Windows
+    NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+else:
+    # On Linux/Mac (and production servers), this usually works automatically
+    NPM_BIN_PATH = 'npm'
+
+INTERNAL_IPS = [
+    "127.0.0.1",
 ]
 
 MIDDLEWARE = [
@@ -51,6 +72,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
 ]
 
 ROOT_URLCONF = 'diva.urls'
@@ -133,7 +156,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'theme', 'static')
 ]
 
 # Setup Media

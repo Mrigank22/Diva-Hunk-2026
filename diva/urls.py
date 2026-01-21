@@ -20,6 +20,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # 1. FIX: Add the browser reload path (stops the crash)
+    path("__reload__/", include("django_browser_reload.urls")),
+
     path('', include('base.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

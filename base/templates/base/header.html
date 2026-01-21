@@ -1,158 +1,94 @@
-{%load static%}
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diva Hunk - Alcheringa</title>
+    
+    {% tailwind_css %}
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href='https://fonts.googleapis.com/css?family=Freigeist' rel='stylesheet'>
-    <link rel="stylesheet" href="{%static 'css/headerfooter.css'%}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" type="text/css" href="{%static 'css/register.css'%}">
-    <link rel="icon" type="image/x-icon" href="{%static 'images/AlcherLogo.png'%}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
-    <title>Diva Hunk</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/AlcherLogo.png' %}">
 
+    <style>
+        @font-face { font-family: 'Newake'; src: url("{% static 'fonts/Newake.otf' %}") format('opentype'); }
+        @font-face { font-family: 'Action Sans'; src: url("{% static 'fonts/ActionSans.otf' %}") format('opentype'); }
+
+        @keyframes fadeout { from { opacity: 1; top: 10%; } to { opacity: 0; top: -10%; visibility: hidden; } }
+        .message-toast { animation: fadeout 1s ease-in forwards; animation-delay: 4s; }
+
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .animate-ticker { display: flex; width: max-content; animation: ticker 40s linear infinite; }
+        .animate-ticker:hover { animation-play-state: paused; }
+    </style>
 </head>
 
-<body>
-    <div class="header">
-        <div class="header-text" id="succme">
+<body class="bg-white font-action antialiased flex flex-col min-h-screen">
 
-            <div class="sections">
-                <a href = "https://alcheringa.in"><img class="alcher-logo" src="{%static 'images/alcher-logo.png'%}" style="margin-right: 2vw;" alt=""></a>
-                <h1>ALCHERINGA</h1>
+    <div class="w-full bg-black text-white text-xs md:text-sm overflow-hidden border-b border-gray-800 z-50">
+        <div class="relative flex">
+            <div class="flex whitespace-nowrap animate-ticker items-center">
+                <span class="flex items-center px-10 md:px-20 py-3">Voting is Live! Voting ends on 30th Jan 2026, at 12:00 PM.</span>
+                <span class="flex items-center px-10 md:px-20 py-3">Voting is Live! Voting ends on 30th Jan 2026, at 12:00 PM.</span>
+                <span class="flex items-center px-10 md:px-20 py-3">Voting is Live! Voting ends on 30th Jan 2026, at 12:00 PM.</span>
+                
+                <span class="flex items-center px-10 md:px-20 py-3">Voting is Live! Voting ends on 30th Jan 2026, at 12:00 PM.</span>
+                <span class="flex items-center px-10 md:px-20 py-3">Voting is Live! Voting ends on 30th Jan 2026, at 12:00 PM.</span>
+                <span class="flex items-center px-10 md:px-20 py-3">Voting is Live! Voting ends on 30th Jan 2026, at 12:00 PM.</span>
             </div>
+        </div>
+    </div>
 
-            {% if messages %}
-            <div class="succme">
-                {% for message in messages %}
-                <p class="votemessage"></p>
-                <p class="dhme">- Diva Hunk</p>
-                <script>
-                    document.addEventListener("DOMContentLoaded", function () {
-                        var voteMessage = document.querySelector(".votemessage");
-                        var messageText = "{{ message }}";
-                        var index = 0;
+    {% include 'base/navbar.html' %}
 
-                        function animateText() {
-                            if (index < messageText.length) {
-                                voteMessage.textContent += messageText.charAt(index);
-                                index++;
-                                setTimeout(animateText, 30); // Adjust the time interval as needed
-                            }
-                        }
+    {% if messages %}
+    <div class="fixed top-32 right-4 z-50 bg-black text-white px-6 py-4 rounded shadow-2xl message-toast max-w-sm border-l-4 border-white">
+        {% for message in messages %}
+        <p class="text-sm font-bold tracking-wide uppercase">{{ message }}</p>
+        <p class="text-[10px] text-gray-400 mt-1 text-right">- Diva Hunk Team</p>
+        {% endfor %}
+    </div>
+    {% endif %}
 
-                        setTimeout(animateText, 50); // Start after 3 seconds
-                    });
-                </script>
-                {% endfor %}
-            </div>
-            <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    var succmeDiv = document.querySelector(".succme");
-                    setTimeout(function () {
-                        succmeDiv.style.animation = "fadeout 2s ease forwards";
-                    }, 10000); // Fade out the .succme div after 6 seconds
-                });
-            </script>
-            {% endif %}
+    <section class="relative w-full h-[85vh] md:h-screen flex items-center overflow-hidden bg-black font-action" style="min-height: 90vh;">
+      
+      <img src="{% static 'images/navbar_below.png' %}" 
+           alt="Diva Hunk Competition" 
+           class="absolute inset-0 w-full h-full object-cover object-top md:object-center z-0">
 
-            <h1 class="heading">DIVA HUNK</h1>
+      <div class="absolute inset-0 bg-black/40 md:bg-black/30 z-10"></div>
 
-            <div class="description">Alcher Diva Hunk stands as a captivating beauty pageant, meticulously orchestrated by the north east India's largest cultural festival, Alcheringa IIT Guwahati</div>
-<!--             <div class="description-2">Vote for your favourite participants</div> -->
-            <!-- <img src="vote-here.png" class="image-vote-here" alt=""> -->
-            <button onclick="scrolltovote()" class="vote-button">
-
-                VOTE HERE
-                <img style="width:25px;height:25px;" src="{%static 'images/Arrow.png'%}" alt="">
+      <div class="relative z-20 max-w-[1440px] mx-auto px-6 md:px-16 w-full py-20 flex flex-col justify-end md:justify-center h-full">
+        <div class="max-w-2xl text-white">
+          <h1 class="font-newake text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight uppercase">
+            DIVA HUNK<br>COMPETITION
+          </h1>
+          <p class="mt-6 text-base md:text-lg text-gray-100 max-w-[280px] md:max-w-md leading-snug">
+            Alcher Diva Hunk stands as a captivating beauty pageant, meticulously orchestrated by North East India's largest cultural festival, Alcheringa IIT Guwahati.
+          </p>
+          <div class="mt-8">
+            <button onclick="scrolltovote()" class="cursor-pointer inline-block bg-white text-black px-10 py-4 text-sm font-bold font-newake uppercase tracking-wider hover:bg-gray-200 transition-all duration-300">
+              Vote Now
             </button>
+          </div>
         </div>
-        <div class="diva-hunk-image">
-            <img class="header-image" src="{%static 'images/diva.png'%}" alt="">
-            <img class="header-image" style="display:none;" id="hunk-image" class="header-image"
-                src="{%static 'images/hunk.png'%}" alt="">
-        </div>
-
-    </div>
-    <div class="header-mobile">
-
-        {% if messages %}
-        <div class="succme">
-            {% for message in messages %}
-            <p class="votemessage">{{message}}</p>
-            <p class="dhme">- Diva Hunk</p>
-            {% endfor %}
-        </div>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                var succmeDiv = document.querySelector(".succme");
-                setTimeout(function () {
-                    succmeDiv.style.animation = "fadeout 2s ease forwards";
-                }, 10000); // Fade out the .succme div after 6 seconds
-            });
-        </script>
-        {% endif %}
-
-        <div class="alcher-heading">
-            <a href="https://alcheringa.in/"><img class="alcher-logo-mobile"
-                    src="{%static 'images/alcher-logo-mobile.png'%}" style="margin-right: 2vw;" alt=""></a>
-            <h1 style="font-weight:800;color:white;font-size:5vw;">ALCHERINGA</h1>
-        </div>
-
-
-        <h1 class="heading-mobile">DIVA HUNK</h1>
-        <div class="description">Alcher Diva Hunk stands as a captivating beauty pageant, meticulously orchestrated by the north east India's largest cultural festival, Alcheringa IIT Guwahati</div>
-<!--         <div class="description-2">Vote for your favourite participants</div> -->
-
-        <button onclick="scrolltovote()" class="vote-button-mobile">
-
-            VOTE HERE
-            <img style="width:25px;height:25px;" src="{%static 'images/Arrow.png'%}" alt="">
-        </button>
-
-    </div>
+      </div>
+    </section>
 
     {% include "base/index.html" %}
     {% include "base/footer.html" %}
 
     <script>
-        let slideIndex = 0;
-
-        function showSlides() {
-            let i;
-            const slides = document.getElementsByClassName("header-image");
-
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-
-            slideIndex++;
-
-            if (slideIndex > slides.length) {
-                slideIndex = 1;
-            }
-
-            slides[slideIndex - 1].style.display = "block";
-
-            setTimeout(showSlides, 2000);
-        }
-
-        showSlides(); 
-    </script>
-
-    <script>
         function scrolltovote() {
             var targetDiv = document.getElementById('vote_div');
-
-            targetDiv.scrollIntoView({ behavior: 'smooth' });
+            if (targetDiv) {
+                const y = targetDiv.getBoundingClientRect().top + window.pageYOffset - 120;
+                window.scrollTo({top: y, behavior: 'smooth'});
+            }
         }
     </script>
-    
-
 </body>
-
 </html>

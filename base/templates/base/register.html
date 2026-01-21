@@ -1,131 +1,142 @@
-{% load static %}
-
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
-    <link rel="stylesheet" href="{%static 'css/headerfooter.css'%}">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Page - Alcheringa</title>
+    
+    {% tailwind_css %}
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href='https://fonts.googleapis.com/css?family=Freigeist' rel='stylesheet'>
-    <link rel="icon" type="image/x-icon" href="{%static 'images/AlcherLogo.png'%}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- <link rel="stylesheet" type="text/css" href="{%static 'css/register.css'%}"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+    <link rel="icon" type="image/x-icon" href="{% static 'images/AlcherLogo.png' %}">
+    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    <title>Voting Page</title>
+    <style>
+        body { font-family: 'Freigeist', sans-serif; }
+        .fade-in-out { transition: opacity 1s ease-in-out; }
+    </style>
 </head>
 
-<body>
-    <div class='container'>
-        <img src="{% static 'images/headerShape.png'%}" class="headerShape">
-        <div class="register">
-            <div class="header1">
-                <img class="alcher-logo" src="{% static 'images/AlcherLogo.png' %}">
-                <div>ALCHERINGA</div>
+<body class="bg-white text-black min-h-screen flex flex-col justify-between">
+
+    {% include 'base/navbar.html' %}
+
+    <div class="flex flex-col md:flex-row w-full max-w-[1440px] mx-auto flex-grow relative">
+
+        <div class="w-full md:w-1/2 h-[50vh] md:h-auto relative p-4 md:p-8 flex items-center justify-center">
+            <div class="relative w-full h-full overflow-hidden ">
+                <img src="{{ candidate.image.url }}" class="fade-in-out absolute inset-0 w-full h-full object-cover object-top" style="opacity: 1;">
+                
+                {% if candidate.image1 %}
+                <img src="{{ candidate.image1.url }}" class="fade-in-out absolute inset-0 w-full h-full object-cover object-top" style="opacity: 0;">
+                {% endif %}
+                
+                {% if candidate.image2 %}
+                <img src="{{ candidate.image2.url }}" class="fade-in-out absolute inset-0 w-full h-full object-cover object-top" style="opacity: 0;">
+                {% endif %}
             </div>
+        </div>
 
-            <div class="registerPage">
-                <div class="registerImages">
-                    <img src="{{ candidate.image.url }}" class="fade-in-out image1">
-                    <img src="{{ candidate.image1.url }}" class="fade-in-out image2">
-                    <img src="{{ candidate.image2.url }}" class="fade-in-out image3">
-                </div>
-                <img src="{%static 'images/Stars.png'%}" class="imageStar" id="fadeInDiv">
-
-                <div class="registerMain">
-                    <div class="formHead">
-                        <p class="heading2">ALCHER {{type}}</p>
-                        <button class="shareProfile" id="shareButton" onclick="shareLink()">
-                            <img src="{%static 'images/shareIcon.png'%}">
-                            <div class="shareContent">SHARE PROFILE</div>
-                        </button>
-                    </div>
-                    <p class="participant">{{ candidate.name }}</p>
-                    <br>
-                    <p class="formNote">Please enter the required information to prevent multiple votes. We will send an
-                        OTP
-                        to <thead>
-                            the entered Email for verification. </p>
-                    <form method="POST" id="otpForm">
-                        {% csrf_token %}
-                        <div class="enterName input">
-                            <input name="name" id="name" type="text" placeholder="Your Name" required>
-                        </div>
-                        <div class="phone1">
-                            <div class="option">
-                                <select id="dropdown" name="country_code">
-                                    <option value="+91">+91</option>
-                                    <option value="+880">+880</option>
-                                </select>
-                            </div>
-                            <div class="contactNumber input">
-                                <input name="contact" id="contact" class="phone1" type="number"
-                                    placeholder="Contact No." required>
-                            </div>
-                        </div>
-                        <div class="emailID input">
-                            <input name="email" id="email" type="email" placeholder="Email ID" required>
-                        </div>
-                        <br>
-                        <button class="OTPSend" name="sendOTP" id="OTP_send" onclick="sendOTP()"> SEND OTP </button>
-
-                        {% if disabled %}
-                        <input type="text" name="name" class="input input2 " value="{{name}}" required
-                            style="display:none" />
-                        <input type="number" name="contact" class="input input2 " value="{{contact}}" required
-                            style="display:none" />
-                        <input type="email" name="email" class="input input2 " value="{{email}}" required
-                            style="display:none" />
-                        {% endif %}
-
-                        {% if message == "Only one vote from one email" %}
-                        <div class="wrongOTP" style="display: flex;">
-                            You have already voted with these details!
-                        </div>
-                        {% endif %}
-
-                        {% if message == "wrong otp" %}
-                        <div class="wrongOTP" style="display: flex;">
-                            Wrong OTP!
-                        </div>
-                        {% endif %}
+        <div class="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-16 lg:px-24 py-8 md:py-12 bg-white">
             
-                        {% if message == "otp expired" %}
-                        <div class="wrongOTP" style="display: flex;">
-                            OTP has expired! Enter your details again.
-                        </div>
-                        {% endif %}
+            <div class="flex justify-between items-center mb-2 w-full border-b md:border-none border-gray-100 pb-2 md:pb-0">
+                <p class="text-xs text-gray-500 tracking-widest uppercase font-bold">Alcher {{ type }}</p>
+                
+                <button type="button" onclick="shareLink()" class="cursor-pointer flex items-center gap-2 bg-gray-50 hover:bg-gray-200 px-3 py-1.5 rounded text-[10px] md:text-xs font-bold transition whitespace-nowrap">
+                    <i class="fas fa-share-alt"></i> Share Profile
+                </button>
+            </div>
 
-                        <p class="OTPHead"> OTP </p>
-                        <div class="OTPCollect">
-                            <div id="inputs" class="inputs">
-                                <input class="OTP" type="text" inputmode="numeric" id="otp_1" name="otp_1" maxlength="1"
-                                    oninput="moveToNextInput(this)">
-                                <input class="OTP" type="text" inputmode="numeric" id="otp_2" name="otp_2" maxlength="1"
-                                    oninput="moveToNextInput(this)" onkeydown="moveToPreviousInput(event, this)">
-                                <input class="OTP" type="text" inputmode="numeric" id="otp_3" name="otp_3" maxlength="1"
-                                    oninput="moveToNextInput(this)" onkeydown="moveToPreviousInput(event, this)">
-                                <input class="OTP" type="text" inputmode="numeric" id="otp_4" name="otp_4" maxlength="1"
-                                    oninput="moveToNextInput(this)" onkeydown="moveToPreviousInput(event, this)">
-                                <input class="OTP" type="text" inputmode="numeric" id="otp_5" name="otp_5" maxlength="1"
-                                    oninput="moveToNextInput(this)" onkeydown="moveToPreviousInput(event, this)">
-                                <input class="OTP" type="text" inputmode="numeric" id="otp_6" name="otp_6" maxlength="1"
-                                    onkeydown="moveToPreviousInput(event, this)">
+            <h1 class="text-3xl md:text-4xl font-black uppercase leading-tight mb-6 mt-2">{{ candidate.name }}</h1>
+
+            <p class="text-black text-sm mb-8 leading-relaxed">
+                Please enter the required information to prevent multiple votes. We will send an OTP to your email for verification.
+            </p>
+
+            <form method="POST" id="otpForm" class="space-y-5">
+                {% csrf_token %}
+
+                <div class="group">
+                    <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Name</label>
+                    <input name="name" id="name" type="text" placeholder="Enter Text Here" required
+                        class="w-full border border-gray-300 p-3 text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition placeholder-gray-400 rounded-none">
+                </div>
+
+                <div class="group">
+                    <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Contact Number</label>
+                    <div class="flex gap-2">
+                        
+                        <div class="relative w-24">
+                            <select id="dropdown" name="country_code" class="w-full appearance-none border border-gray-300 p-3 text-sm bg-white focus:outline-none focus:border-black rounded-none cursor-pointer">
+                                <option value="+91">+91</option>
+                                <option value="+880">+880</option>
+                                <option value="+1">+1</option>
+                                <option value="+44">+44</option>
+                                <option value="+971">+971</option>
+                            </select>
+                            
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-black">
+                                <i class="fas fa-chevron-down text-[10px]"></i>
                             </div>
                         </div>
-                        <div class="subt">
-                            <button class="submit" name="verify"> SUBMIT MY VOTE </button>
-                        </div>
-                    </form>
+
+                        <input name="contact" id="contact" type="tel" placeholder="Enter Text Here" required
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                            class="w-full border border-gray-300 p-3 text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition placeholder-gray-400 rounded-none">
+                    </div>
                 </div>
-            </div>
+
+                <div class="group">
+                    <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Email Address</label>
+                    <input name="email" id="email" type="email" placeholder="Enter Text Here" required
+                        class="w-full border border-gray-300 p-3 text-sm focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition placeholder-gray-400 rounded-none">
+                </div>
+
+                <div class="text-red-600 text-sm font-medium mt-2">
+                    {% if message == "Only one vote from one email" %}
+                        You have already voted with these details!
+                    {% elif message == "wrong otp" %}
+                        Wrong OTP!
+                    {% elif message == "otp expired" %}
+                        OTP has expired! Enter your details again.
+                    {% endif %}
+                </div>
+
+                <div id="step-1-btn" class="mt-6">
+                    <button type="submit" id="OTP_send_btn" 
+                        class="cursor-pointer bg-black text-white px-8 py-3 text-sm font-bold uppercase tracking-wide hover:bg-gray-800 transition rounded-none">
+                        Get OTP
+                    </button>
+                </div>
+
+                <div id="step-2-otp" class="hidden mt-6 pt-6 border-t border-gray-100">
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-3">Enter OTP</label>
+                    
+                    <div class="flex gap-2 md:gap-3 mb-4">
+                        <input class="w-10 h-10 md:w-12 md:h-12 border border-gray-300 text-center text-lg focus:border-black focus:outline-none transition rounded-none" type="text" inputmode="numeric" id="otp_1" name="otp_1" maxlength="1" oninput="moveToNextInput(this)">
+                        <input class="w-10 h-10 md:w-12 md:h-12 border border-gray-300 text-center text-lg focus:border-black focus:outline-none transition rounded-none" type="text" inputmode="numeric" id="otp_2" name="otp_2" maxlength="1" oninput="moveToNextInput(this)" onkeydown="moveToPreviousInput(event, this)">
+                        <input class="w-10 h-10 md:w-12 md:h-12 border border-gray-300 text-center text-lg focus:border-black focus:outline-none transition rounded-none" type="text" inputmode="numeric" id="otp_3" name="otp_3" maxlength="1" oninput="moveToNextInput(this)" onkeydown="moveToPreviousInput(event, this)">
+                        <input class="w-10 h-10 md:w-12 md:h-12 border border-gray-300 text-center text-lg focus:border-black focus:outline-none transition rounded-none" type="text" inputmode="numeric" id="otp_4" name="otp_4" maxlength="1" oninput="moveToNextInput(this)" onkeydown="moveToPreviousInput(event, this)">
+                        <input class="w-10 h-10 md:w-12 md:h-12 border border-gray-300 text-center text-lg focus:border-black focus:outline-none transition rounded-none" type="text" inputmode="numeric" id="otp_5" name="otp_5" maxlength="1" oninput="moveToNextInput(this)" onkeydown="moveToPreviousInput(event, this)">
+                        <input class="w-10 h-10 md:w-12 md:h-12 border border-gray-300 text-center text-lg focus:border-black focus:outline-none transition rounded-none" type="text" inputmode="numeric" id="otp_6" name="otp_6" maxlength="1" onkeydown="moveToPreviousInput(event, this)">
+                    </div>
+
+                    <div class="flex items-center gap-4 mt-2 mb-6">
+                         <button type="button" onclick="triggerResendOTP()" class="cursor-pointer flex items-center gap-1 text-xs font-bold text-black hover:underline">
+                            <i class="fas fa-redo"></i> Resend OTP
+                         </button>
+                         <span class="text-xs text-gray-400">Send again in 24 sec</span>
+                    </div>
+
+                    <button type="submit" name="verify" class="cursor-pointer bg-black text-white w-full py-4 text-sm font-bold uppercase tracking-wide hover:bg-gray-900 transition rounded-none">
+                        Submit My Vote
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -133,162 +144,95 @@
 
     <script>
         function moveToNextInput(currentInput) {
-            // Move focus to the next input
             var nextInput = currentInput.nextElementSibling;
-            if (nextInput && currentInput.value !== '') {
-                nextInput.focus();
-            }
+            if (nextInput && currentInput.value !== '') { nextInput.focus(); }
         }
         function moveToPreviousInput(event, currentInput) {
             if (event.key === 'ArrowLeft' && currentInput.selectionStart === 0) {
                 var previousInput = currentInput.previousElementSibling;
-                if (previousInput) {
-                    previousInput.focus();
-                }
+                if (previousInput) { previousInput.focus(); }
             }
         }
 
         document.addEventListener("DOMContentLoaded", function () {
             let currentImageIndex = 0;
             const images = document.querySelectorAll(".fade-in-out");
-
-            function showNextImage() {
-                const currentImage = images[currentImageIndex];
-                currentImage.style.opacity = 0; // fade out the current image
-
-                currentImageIndex = (currentImageIndex + 1) % images.length;
-
-                const nextImage = images[currentImageIndex];
-
-                nextImage.style.opacity = 1; // fade in the next image
-
-                setTimeout(showNextImage, 3000); // wait for 3 seconds and repeat
+            if(images.length > 1) {
+                function showNextImage() {
+                    images[currentImageIndex].style.opacity = 0; 
+                    currentImageIndex = (currentImageIndex + 1) % images.length;
+                    images[currentImageIndex].style.opacity = 1; 
+                    setTimeout(showNextImage, 3000); 
+                }
+                setTimeout(showNextImage, 3000);
             }
-
-            showNextImage(); // start the initial transition
+            
+            // --- NEW: FORM SUBMISSION LOGIC ---
+            // Intercept form submit. 
+            // If the OTP section is hidden, it means we are in "Step 1" -> Send OTP via AJAX.
+            // If OTP section is visible, we let the normal form submit happen (Step 2).
+            const form = document.getElementById('otpForm');
+            form.addEventListener('submit', function(event) {
+                const step1Btn = document.getElementById('step-1-btn');
+                
+                // If "Get OTP" button is visible, we are in Step 1
+                if (!step1Btn.classList.contains('hidden')) {
+                    event.preventDefault(); // Stop normal submit
+                    sendOTP(); // Do AJAX instead
+                }
+                // Else: We are in Step 2, let the form submit normally (verify)
+            });
         });
 
-        if ("{{disabled}}" == 'True') {
-            document.getElementById('name').value = "{{name}}";
-            document.getElementById('name').disabled = "true";
-            document.getElementById('contact').value = "{{contact}}";
-            document.getElementById('contact').disabled = "true";
-            document.getElementById('email').value = "{{email}}";
-            document.getElementById('email').disabled = "true";
-            document.getElementById("OTP_send").disabled = "true";
-            document.getElementById("OTP_send").style.cursor = "default";
-            document.getElementsByName('otp_1')[0].required = true;
-            document.getElementsByName('otp_2')[0].required = true;
-            document.getElementsByName('otp_3')[0].required = true;
-            document.getElementsByName('otp_4')[0].required = true;
-            document.getElementsByName('otp_5')[0].required = true;
-            document.getElementsByName('otp_6')[0].required = true;
-            document.getElementsByName('verify')[0].disabled = false;
-            document.getElementsByName('verify')[0].style.cursor = 'pointer';
-        }
-    </script>
-
-    <script>
-        function shareLink() {
-            // Check if the Share API is available
-            if (navigator.share) {
-                navigator.share({
-                    title: 'ALCHER {{ type }}',
-                    text: '{{ candidate.name }}',
-                    url: window.location.href
-                })
-                    .then(() => console.log('Shared successfully'))
-                    .catch((error) => console.error('Error sharing:', error));
-            } else {
-                // Fallback for browsers that do not support the Share API
-                alert('Share API is not supported in this browser.');
-                // You can provide a fallback implementation here
-            }
-        }
-
         function sendOTP() {
-            // Gather form data
             var formData = $('#otpForm').serialize();
+            
+            // Add a flag to tell backend this is an OTP request, not verification
+            formData += "&sendOTP=true"; 
 
-            // Make an AJAX request
             $.ajax({
-                // url: 'register.html',
                 type: 'POST',
                 data: formData,
                 success: function (response) {
-                    // Handle success (e.g., show a message)
                     alert('OTP sent successfully');
+                    document.getElementById('step-1-btn').classList.add('hidden');
+                    document.getElementById('step-2-otp').classList.remove('hidden');
                 },
                 error: function (error) {
-                    // Handle error (e.g., show an error message)
-                    alert('Error sending OTP');
+                    alert('Error sending OTP. Please check your details.');
                 }
             });
         }
+        
+        function triggerResendOTP() {
+             sendOTP();
+        }
 
-
-
-        // document.getElementById('shareButton').addEventListener('click', function () {
-        //     var currentUrl = window.location.href;
-
-        //     var tempInput = document.createElement('input');
-        //     tempInput.value = currentUrl;
-
-        //     document.body.appendChild(tempInput);
-
-        //     tempInput.select();
-        //     tempInput.setSelectionRange(0, 99999);
-
-        //     document.execCommand('copy');
-
-        //     document.body.removeChild(tempInput);
-
-        //     alert('URL copied to clipboard: ' + currentUrl);
-        // });
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let currentImageIndex = 0;
-            const images = document.querySelectorAll(".fade-in-out");
-            const overlay = document.querySelector(".overlay");
-
-            function showNextImage() {
-                const currentImage = images[currentImageIndex];
-                currentImage.classList.remove("visible"); // Remove the visible class from the current image
-
-                overlay.classList.add("visible"); // Make the overlay visible
-
-                currentImageIndex = (currentImageIndex + 1) % images.length;
-
-                const nextImage = images[currentImageIndex];
-                nextImage.classList.add("visible"); // Add the visible class to the next image
-
-                setTimeout(() => {
-                    overlay.classList.remove("visible"); // Remove the visible class from the overlay after the transition
-                }, 2000); // Adjust the timing to match the transition duration
-
-                setTimeout(showNextImage, 3000); // Wait for 3 seconds and repeat
+        function shareLink() {
+            if (navigator.share) {
+                navigator.share({ title: 'ALCHER {{ type }}', text: '{{ candidate.name }}', url: window.location.href });
+            } else {
+                var dummy = document.createElement('input');
+                document.body.appendChild(dummy); dummy.value = window.location.href; dummy.select();
+                document.execCommand('copy'); document.body.removeChild(dummy);
+                alert('Link copied to clipboard!');
             }
+        }
 
-            showNextImage(); // Start the initial transition
-        });
-
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var fadeInDiv = document.getElementById("fadeInDiv");
-            fadeInDiv.addEventListener("animationend", function() {
-            fadeInDiv.style.animation = "none";
-            setTimeout(function() {
-                fadeInDiv.style.animation = "fadeInAndOut 4s linear forwards";
-            }, 1000); // Adjust the delay as needed
+        // Disabled state logic
+        if ("{{disabled}}" == 'True') {
+            document.getElementById('name').value = "{{name}}";
+            document.getElementById('contact').value = "{{contact}}";
+            document.getElementById('email').value = "{{email}}";
+            ['name', 'contact', 'email'].forEach(id => {
+                let el = document.getElementById(id);
+                el.disabled = true;
+                el.classList.add('bg-gray-100', 'text-gray-500', 'cursor-not-allowed');
             });
-        });
+            document.getElementById('step-1-btn').classList.add('hidden');
+            document.getElementById('step-2-otp').classList.remove('hidden');
+            for(let i=1; i<=6; i++) { document.getElementsByName('otp_'+i)[0].required = true; }
+        }
     </script>
-
-
 </body>
-
 </html>
